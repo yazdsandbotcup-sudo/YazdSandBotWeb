@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جام ربات‌های شنی یزد ۱۴۰۵ | Yazd Sandbot Cup 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand-light: #f5e6c8;
+    --sand-mid: #e8c88a;
+    --sand-dark: #c9a85c;
+    --dune: #b8935a;
+    --orange: #e87c2a;
+    --orange-bright: #ff9540;
+    --brown-deep: #5c3d1e;
+    --sky: #f0d9a8;
+    --text-dark: #2a1a08;
+    --text-mid: #5c3d1e;
+    --dust: rgba(200,160,80,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: var(--sand-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Sand texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #d4a855 0%, #e8c88a 30%, #f5e6c8 70%, #f5e6c8 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  /* Dune silhouette */
+  .dunes-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, transparent 0%, #c9a85c 60%, #b8935a 100%);
+    clip-path: polygon(0% 60%, 10% 40%, 20% 55%, 35% 20%, 50% 45%, 65% 15%, 80% 50%, 90% 30%, 100% 50%, 100% 100%, 0% 100%);
+  }
+
+  .dunes-bg2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(180deg, transparent 0%, #a07840 80%, #8b6530 100%);
+    clip-path: polygon(0% 70%, 15% 50%, 30% 65%, 45% 35%, 60% 60%, 75% 25%, 90% 55%, 100% 40%, 100% 100%, 0% 100%);
+  }
+
+  /* Sun */
+  .sun {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #fff7d4, #ffcc44, #e8963a);
+    border-radius: 50%;
+    box-shadow: 0 0 60px 30px rgba(255, 200, 80, 0.5), 0 0 120px 60px rgba(255, 180, 50, 0.25);
+    animation: sunPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 60px 30px rgba(255,200,80,0.5), 0 0 120px 60px rgba(255,180,50,0.25); }
+    50% { box-shadow: 0 0 80px 40px rgba(255,200,80,0.7), 0 0 160px 80px rgba(255,180,50,0.35); }
+  }
+
+  /* Sun rays */
+  .sun::after {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,200,80,0.3) 5deg, transparent 10deg, transparent 20deg, rgba(255,200,80,0.3) 25deg, transparent 30deg, transparent 40deg, rgba(255,200,80,0.3) 45deg, transparent 50deg, transparent 60deg, rgba(255,200,80,0.3) 65deg, transparent 70deg, transparent 80deg, rgba(255,200,80,0.3) 85deg, transparent 90deg, transparent 100deg, rgba(255,200,80,0.3) 105deg, transparent 110deg, transparent 120deg, rgba(255,200,80,0.3) 125deg, transparent 130deg, transparent 140deg, rgba(255,200,80,0.3) 145deg, transparent 150deg, transparent 160deg, rgba(255,200,80,0.3) 165deg, transparent 170deg, transparent 180deg, rgba(255,200,80,0.3) 185deg, transparent 190deg, transparent 200deg, rgba(255,200,80,0.3) 205deg, transparent 210deg, transparent 220deg, rgba(255,200,80,0.3) 225deg, transparent 230deg, transparent 240deg, rgba(255,200,80,0.3) 245deg, transparent 250deg, transparent 260deg, rgba(255,200,80,0.3) 265deg, transparent 270deg, transparent 280deg, rgba(255,200,80,0.3) 285deg, transparent 290deg, transparent 300deg, rgba(255,200,80,0.3) 305deg, transparent 310deg, transparent 320deg, rgba(255,200,80,0.3) 325deg, transparent 330deg, transparent 340deg, rgba(255,200,80,0.3) 345deg, transparent 350deg, transparent 360deg);
+    animation: rotateSun 20s linear infinite;
+  }
+
+  @keyframes rotateSun { to { transform: rotate(360deg); } }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(180,130,60,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    letter-spacing: 2px;
+  }
+
+  .nav-logo span { color: var(--orange-bright); }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange-bright);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--orange-bright); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Hero content */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--brown-deep);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+
+  .hero-title-en {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--brown-deep);
+    text-shadow: 2px 4px 0 rgba(255,255,255,0.4);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-title-en .accent { color: var(--orange); }
+
+  .hero-title-fa {
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: var(--text-mid);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--orange), #c05a15);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(200,90,30,0.4), 0 0 0 3px rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(200,90,30,0.5), 0 0 0 3px rgba(255,255,255,0.4); }
+  .hero-cta:hover::before { transform: translateX(0); }
+
+  /* Particle dust */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(200,160,80,0.4);
+    animation: float linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    from { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.5; }
+    to { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Sections */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    border-right: 3px solid var(--orange);
+    padding-right: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  /* About section */
+  .about-section {
+    position: relative;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    line-height: 2;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gear-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sand-mid), var(--dune));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(180,120,50,0.3), inset 0 0 40px rgba(255,255,255,0.3);
+    position: relative;
+    animation: rotateSlow 20s linear infinite;
+  }
+
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+  .gear-inner {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sand-light), var(--sand-mid));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    animation: rotateSlow 20s linear infinite reverse;
+    box-shadow: inset 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Features */
+  .features-section {
+    background: linear-gradient(180deg, var(--sand-light), var(--sky));
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(245,230,200,0.4));
+    border: 1px solid rgba(200,160,80,0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--orange), var(--dune));
+  }
+
+  .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(180,120,50,0.2); }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feature-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-text {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  /* Stats */
+  .stats-strip {
+    background: linear-gradient(135deg, var(--brown-deep), #3a2010);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-strip::before {    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 40px);
+  }
+
+  .stats-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item { position: relative; }
+
+  .stat-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--orange-bright);
+    display: block;
+    text-shadow: 0 0 30px rgba(255,150,60,0.5);
+  }
+
+  .stat-label {
+    color: var(--sand-mid);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  /* Register */
+  .register-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    background: linear-gradient(180deg, var(--sand-light) 0%, var(--sand-mid) 50%, var(--dune) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .register-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,200,100,0.3), transparent 70%);
+    pointer-events: none;
+  }
+
+  .register-box {
+    position: relative;
+    z-index: 5;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .register-box .section-title {
+    color: var(--brown-deep);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .register-box p {
+    color: var(--text-mid);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-big {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--brown-deep), #1a0a00);
+    color: var(--orange-bright);
+    padding: 1.2rem 4rem;
+    border-radius: 4px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 0 2px var(--orange);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-big:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 3px var(--orange-bright); }
+
+  /* Social */
+  .social-bar {
+    background: var(--brown-deep);
+    padding: 2rem;
+    text-align: center;
+    color: var(--sand-mid);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  .social-bar a {
+    color: var(--orange-bright);
+    text-decoration: none;
+    font-weight: 700;
+    margin: 0 1rem;
+  }
+
+  .social-bar a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    background: #1a0a00;
+    color: rgba(200,160,80,0.5);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  /* Divider */
+  .desert-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .desert-divider svg { display: block; width: 100%; }
+
+  /* Scroll animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .gear-circle { width: 200px; height: 200px; }
+    .gear-inner { width: 140px; height: 140px; font-size: 3rem; }
+  }
+
+  /* Track/separator line */
+  .track {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange), var(--dune));
+    margin: 1rem 0 2rem auto;
+    border-radius: 2px;
+  }
+
+  .slogan-badge {
+    display: inline-block;
+    background: rgba(232,124,42,0.15);
+    border: 2px solid var(--orange);
+    color: var(--orange);
+    padding: 0.5rem 1.5rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-top: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo"><span>SANDBOT</span> CUP 2026</div>
+  <ul class="nav-links">
+    <li><a href="#about">درباره رویداد</a></li>
+    <li><a href="#features">چرا شرکت کنم</a></li>
+    <li><a href="#register">ثبت‌نام</a></li>
+  </ul>
+</nav>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="sun"></div>
+  <div class="dunes-bg"></div>
+  <div class="dunes-bg2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">UGV LEAGUE — YAZD 1405</div>
+    <div class="hero-title-en">YAZD <span class="accent">SANDBOT</span><br>CUP 2026</div>
+    <div class="hero-title-fa">جام ربات‌های شنی یزد ۱۴۰۵</div>
+    <p class="hero-subtitle">سری مسابقات ربات‌های متحرک بدون سرنشین زمینی<br>سفری از ایده تا ساخت، در قلب کویر…</p>
+    <a href="https://survey.porsline.ir/s/mY1RYHuk" target="_blank" class="hero-cta">ثبت‌نام کنید ←</a>
+    <div class="slogan-badge">⚙ رقابتی سخت برای بقا مهندسی!</div>
+  </div>
+</div>
+
+<!-- Desert wave divider -->
+<div class="desert-divider">
+  <svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="80">
+    <path d="M0,40 C100,10 200,70 350,30 C500,-10 600,60 750,35 C900,10 1000,65 1200,25 L1200,80 L0,80 Z" fill="#f5e6c8"/>
+  </svg>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">درباره رویداد</div>
+      <h2 class="section-title">فقط یک مسابقه نیست؛<br>یک سفر مهندسی است!</h2>
+      <div class="track"></div>
+      <p>جام ربات‌های شنی یزد ۱۴۰۵ یک رویداد دانشجویی منحصربه‌فرد است که در آن قدم‌به‌قدم درگیر یک چالش واقعی می‌شویم.</p>
+      <p>از ایده‌پردازی و طراحی گرفته تا دست‌به‌آچار شدن و ساخت صفر تا صد یک ربات متحرک زمینی (UGV) — همه و همه در این رویداد هیجان‌انگیز تجربه می‌شود.</p>
+      <p>اگر آماده‌اید تا تئوری‌های دانشگاه را به عمل تبدیل کنید و مهارت‌هایتان را به چالش بکشید، <strong>جای تیم شما اینجاست.</strong></p>
+    </div>
+    <div class="about-visual reveal">
+      <div class="gear-circle">
+        <div class="gear-inner">🤖</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <span class="stat-number">UGV</span>
+      <div class="stat-label">لیگ ربات زمینی</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-number">۱۴۰۵</span>
+      <div class="stat-label">سال برگزاری</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-number">یزد</span>
+      <div class="stat-label">قلب کویر ایران</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-number">٪۱۰۰</span>
+      <div class="stat-label">تجربه عملی</div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<section id="features">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-label">چرا شرکت کنم؟</div>
+    <h2 class="section-title">در این مسیر هیجان‌انگیز<br>چه به دست می‌آوریم؟</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">🤝</span>
+      <div class="feature-title">کار تیمی و حل مسئله</div>
+      <p class="feature-text">تجربه بی‌نظیر همکاری در یک تیم چندنفره برای حل یک چالش واقعی مهندسی که در هیچ کلاس درسی پیدا نمی‌شود.</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">⚙️</span>
+      <div class="feature-title">مهارت‌های فنی و عملی</div>
+      <p class="feature-text">ارتقای چشمگیر دانش عملی در حوزه رباتیک، الکترونیک، و مکانیک — از طراحی تا ساخت و آزمایش.</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🏆</span>
+      <div class="feature-title">میدان مسابقه واقعی</div>
+      <p class="feature-text">ایستادن در میدان مسابقه و تماشای نبرد ربوتی که خودتان خلق کرده‌اید — لحظه‌ای که هرگز فراموش نخواهید کرد.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Register -->
+<div class="register-section" id="register">
+  <div class="register-box reveal">
+    <div class="section-label" style="display:block;text-align:center;border:none;padding:0;margin-bottom:1rem;">ثبت‌نام رویداد</div>
+    <h2 class="section-title" style="color:var(--brown-deep);font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;">آماده‌اید وارد میدان شوید؟</h2>
+    <p>فرصت را از دست ندهید. اکنون تیم خود را ثبت‌نام کنید و این ماجراجویی مهندسی را آغاز کنید.</p>
+    <a href="https://survey.porsline.ir/s/mY1RYHuk" target="_blank" class="cta-big">ثبت‌نام تیم ←</a>
+    <div style="margin-top:2rem;color:var(--text-mid);font-size:0.85rem;">@YSB_CUP</div>
+  </div>
+</div>
+
+<!-- Social -->
+<div class="social-bar">
+  <span>ارتباط با ما: </span>
+  <a href="#">اینستاگرام</a>
+  <a href="#">تلگرام</a>
+  <span style="margin-right:1rem;color:var(--sand-mid);">@YSB_CUP</span>
+</div>
+
+<!-- Footer -->
+<footer>
+  YAZD SANDBOT CUP 2026 &nbsp;|&nbsp; جام ربات‌های شنی یزد ۱۴۰۵ &nbsp;|&nbsp; UGV LEAGUE
+</footer>
+
+<script>
+// Create particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  container.style.position = 'fixed';
+  container.style.inset = '0';
+  container.style.pointerEvents = 'none';
+  container.style.zIndex = '2';
+
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 8 + 2;
+    p.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 15 + 10}s;
+      animation-delay: ${Math.random() * 10}s;
+      opacity: ${Math.random() * 0.5};
+    `;
+    container.appendChild(p);
+  }
+}
+
+createParticles();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
